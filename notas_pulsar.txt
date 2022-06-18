@@ -1,0 +1,8 @@
+docker run -it -p 6650:6650 -p 8080:8080 -v $PWD/data/pulsar apachepulsar/pulsar-all bin/pulsar standalone --advertised-address 127.0.0.1
+
+TOPIC=persistent://sample/standalone/ns1/test-topic
+
+bin/pulsar-client consume $TOPIC -s mysubscription -n 0
+
+bin/pulsar-client produce $TOPIC -m "Hola mundo" -n 100 -r 0
+
